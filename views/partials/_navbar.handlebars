@@ -1,20 +1,22 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+<nav class="navbar navbar-dark bg-dark" id="navbar">
   <div class="container">
-      <a class="navbar-brand" href="/">Social Media Ewig_Life</a>
-
+      <a  class="navbar-brand" href="/">DS GAMING</a>
       {{#if user}}
-        <a class="navbar-brand" id="welcome" href="/profile">Hi, {{user.firstname}}</a>
+        <a class="navbar-brand" href="/users"><i class="fa fa-users"></i></a>
+        <a class="navbar-brand" href="/posts"><i class="fa fa-globe"></i></a>
+        <a class="navbar-brand" href="/website">Web <i class="fa fa-globe"></i></a>
       {{else}}
       {{/if}}
 
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
+    <i class="fa fa-list"></i>
   </button>
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
         <a class="nav-link" href="/about">About <span class="sr-only">(current)</span></a>
+        <a class="navbar-brand" href="/website">Web <i class="fa fa-globe"></i></a>
       </li>
       {{#if user}}
       <li class="nav-item">

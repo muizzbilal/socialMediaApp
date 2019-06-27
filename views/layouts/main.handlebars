@@ -5,10 +5,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Social Media App</title>
+    <title>DS Gaming</title>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Arapey|Handlee" rel="stylesheet">    
+
+
+
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/start/jquery-ui.css">
     
+
+
+
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     
@@ -16,15 +24,62 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
     <link rel="stylesheet" href="/css/styles.css">
-    <script src="/js/script.js"></script>
+	<link rel="stylesheet" href="/css/fruitslice.css">
+    <link rel="stylesheet" href="/css/math.css">
+    <link rel="stylesheet" href="/css/drawing.css"> 
+    <link rel="stylesheet" href="/css/dicegame.css">
+    <link rel="stylesheet" href="/css/simongame.css">
+    <link rel="stylesheet" href="/css/website.css">
+    <link rel="stylesheet" href="/css/twentytwenty.css">
+    <link rel="stylesheet" href="/css/musicgame.css">
+    <link rel="stylesheet" href="/css/findgames.css">
+
+
+
 </head>
 <body>
 
-    {{> _navbar}}
     
+    {{#if url}}
+    {{else}}
+    {{> _navbar}}
+    {{/if}}
     <div id="main">
         {{{body}}}
     </div>
+
+    {{#if url}}
+    {{else}}
+    {{> _footer}}
+    {{/if}}
+
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+
+<script src="/js/jquery.twentytwenty.js"></script>
+<script src="/js/jquery.event.move.js"></script>
+
+<script src="/js/musicgame.js"></script>
+
+<script src="/js/findgames.js"></script>
+
+<script src="/js/parallax.min.js"></script>
+<script src="/js/script.js"></script>   
+
+<script src="/js/fruitslice.js"></script>
+<script src="/js/drawing.js"></script>
+<script src="/js/math.js"></script>
+<script src="/js/simongame.js"></script>
+<script src="/js/dicegame.js"></script>
+<script src="/js/script.js"></script>
+
+<script>
+    var scene = document.getElementById("scene");
+    var parallax = new Parallax(scene);
+</script>
+
 
 
 </body>

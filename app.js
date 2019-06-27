@@ -1,4 +1,4 @@
-// Load Modules
+ // Load Modules
 const express = require('express');
 const exphbs = require('express-handlebars');
 const mongoose = require('mongoose');
@@ -8,11 +8,19 @@ const bodyParser = require("body-parser");
 const cookieParser = require('cookie-parser');
 // Connect to MongoURI exported from extrenal file
 const keys = require('./config/keys');
-// User collections
+// Load Models
 const User = require('./models/user');
+const Post = require('./models/post');
 // Link passports to the server
 require('./passport/google-passport');
 require('./passport/facebook-passport');
+require('./passport/instagram-passport');
+// Link helpers
+const {
+  ensureAuthentication,
+  ensureGuest
+} = require('./helpers/auth');
+
 //  inialize applicaion
 const app = express();
 //Express config
@@ -58,13 +66,49 @@ mongoose.connect(keys.MongoURI, {
 //  set port
 const port = process.env.PORT || 3000;
 
-app.get('/', (req, res) => {
+app.get('/', ensureGuest,(req, res) => {
     res.render('home');
 });
 
 app.get('/about', (req, res) => {
     res.render('about');
 });
+
+
+app.get('/website', (req, res) => {
+  res.render('website',{url:req.url == '/website'});
+});
+
+app.get('/fruitslice', (req, res) => {
+  res.render('fruitslice');
+});
+
+app.get('/mathgame', (req, res) => {
+  res.render('math');
+});
+
+app.get('/drawingapp', (req, res) => {
+  res.render('drawing');
+});
+
+app.get('/dicegame', (req, res) => {
+  res.render('dicegame');
+});
+
+app.get('/simongame', (req, res) => {
+  res.render('simongame');
+});
+
+app.get('/musicgame', (req, res) => {
+  res.render('musicgame');
+});
+
+app.get('/findgames', (req, res) => {
+  res.render('findgames');
+});
+
+
+
 
 // google route
 app.get('/auth/google',
@@ -96,9 +140,22 @@ app.get('/auth/facebook/callback',
     // Successful authentication, redirect home.
     res.redirect('/profile');
   });
+// instagram route
+app.get('/auth/instagram',
+  passport.authenticate('instagram'));
+
+app.get('/auth/instagram/callback', 
+  passport.authenticate('instagram',
+    { 
+       failureRedirect: '/' 
+    }),
+  (req, res) => {
+    // Successful authentication, redirect home.
+    res.redirect('/profile');
+  });
 
 // Handle profile route
-app.get('/profile', (req, res) => {
+app.get('/profile', ensureAuthentication,(req, res) => {
     User.findById({_id: req.user._id})
     .then((user) => {
         res.render('profile', {
@@ -106,6 +163,67 @@ app.get('/profile', (req, res) => {
         });
     });
 }); 
+// Handle Route for all Users
+app.get('/users', ensureAuthentication, (req, res) => {
+  User.find({}).then((users) => {
+    res.render('users', {
+      users:users
+    });
+  });
+});
+//  Display one user profile
+app.get('/user/:id', (req, res) => {
+  User.findById({_id: req.params.id})
+  .then((user) => {
+    res.render('user', {
+      user:user
+    });
+  });
+});
+
+
+
+//handle email post route
+app.post('/addEmail' , (req, res) => {
+    const email = req.body.email;
+    User.findById({_id: req.user._id})
+    .then((user) => {
+        user.email = email;
+        user.save()
+        .then(() => {
+            res.redirect('/profile');
+        });
+    });
+});
+// Handle Phone Post Route
+app.post('/addPhone', (req, res) => {
+  const phone = req.body.phone;
+  User.findById({_id: req.user._id})
+  .then((user) => {
+    user.phone = phone;
+    user.save()
+    .then(() => {
+      res.redirect('/profile');
+    });
+  });
+});
+// Handle Location Post Route
+app.post('/addLocation', (req, res) => {
+  const location = req.body.location;
+  User.findById({_id: req.user._id})
+  .then((user) => {
+    user.location = location;
+    user.save()
+    .then(() => {
+      res.redirect('/profile');
+    });
+  });
+});
+// Handle post routes for posts
+app.get('/addPost', (req, res) => {
+  res.render('addPost');
+});
+
 // Handle User logout route
 app.get('/logout', (req, res) => {
     req.logout();

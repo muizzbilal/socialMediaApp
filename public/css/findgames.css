@@ -1,0 +1,31 @@
+  #results{
+    font-family: sans-serif;
+    text-align: center;
+  }  
+  #search{
+    text-align: center;
+    height: 45px;
+    width: 100%;
+  }
+  #button-search{
+    height: 45px;
+    width: 100%;
+    background-color: beige;
+    font-size: 25px;
+  }
+  h2{
+    font-family: 'Raleway', sans-serif;
+    font-weight: 700;
+  }
+  h1{
+    margin-top: 5%;
+    font-size: 400%;
+  }
+  .row {
+    margin-top:100px;
+  }
+  .bookWrap {
+    height:285px;
+    margin-top:20px;
+    border-bottom:1px solid gray;
+  }

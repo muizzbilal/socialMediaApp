@@ -1,0 +1,90 @@
+.simon-game-main{
+    position: relative;
+    text-align: center;
+    float: left;
+    padding: 50px auto;
+    margin-bottom: 10px;
+}
+#clock{
+	color: #fff;
+	font-family: 'Bungee Shade', cursive;
+    font-size: 70px;
+    float: left;
+	position: relative;
+	text-align: center;
+    margin: 0 auto;
+    margin-left: 37%; 
+}
+.simon-game-main > .field {
+	opacity: 1.0;
+	width: 150px;
+	height: 150px;
+    float: left;
+    margin-top: 100px;
+	margin-left: 120px;
+	border-radius: 2px;
+	transition: 0.2s;
+}
+.field:hover {
+	transform: rotate(2deg) scale(1.1);
+}
+.field:active {
+	transform: scale(0.9);
+	opacity: 0.1;
+}
+.field.active {
+	transform: scale(0.9);
+	opacity: 0.1;
+}
+.red {
+	background: rgb(192, 57, 43);
+}
+.blue {
+	background: rgb(41, 128, 185);
+}
+.yellow {
+	background: rgb(241, 196, 15);
+}
+.green {
+	background: rgb(46, 204, 113);
+}
+.bar {
+	margin-top: 50px;
+	width: 50%;
+	height: 30px;
+	float: left;
+	background: rgb(236, 240, 241);
+	border-radius: 2px;
+	color: rgb(52, 73, 94);
+	font-weight: bold;
+    line-height: 30px;
+    margin-left: 25%;
+	text-align: center;
+}
+.bar * {
+	float: left;
+}
+button {
+	min-width: 120px;
+	font-weight: bold;
+	background: rgb(236, 240, 241);
+	border-radius: 2px;
+	color: rgb(52, 73, 94);
+	line-height: 30px;
+	text-align: center;
+	border: 0;
+	transition: 0.3s;
+}
+button:active, button:disabled {
+	background: rgb(189, 195, 199);
+}
+.buttons {
+	width: 100%;
+	float: left;
+	margin-top: 10px;
+	text-align: center;
+}
+button.red {
+	background: rgb(192, 57, 43);
+	color: white;
+}
